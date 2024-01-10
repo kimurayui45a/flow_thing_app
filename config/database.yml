@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: flow_thing_development
+
+test:
+  <<: *default
+  database: flow_thing_test
+
+production:
+  <<: *default
+  database: flow_thing_production
+  username: flow_thing
+  password: <%= ENV["FLOW_THING_DATABASE_PASSWORD"] %>
